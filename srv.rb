@@ -12,6 +12,10 @@ get '/' do
     "hello eth"
 end
 
+post '/ingestion' do
+    puts params
+end
+
 get '/feed/:boop' do
     cal = merge_events(ICS_BLOBS.map {|blob| get_events(blob)}.flatten)
     cal.publish # ??
