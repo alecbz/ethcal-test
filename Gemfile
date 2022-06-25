@@ -4,5 +4,5 @@ source "https://rubygems.org"
 
 git_source(:github) {|repo_name| "https://github.com/#{repo_name}" }
 
- gem "icalendar"
- gem "sinatra"
+gem "icalendar"
+gem "sinatra"
