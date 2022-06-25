@@ -12,13 +12,16 @@ get '/' do
     "hello eth"
 end
 
-get '/feed' do
-    merge_events([single_event(ICS_BLOB), single_event(ICS_BLOB2)]).to_ical
+get '/feed/:boop' do
+    merge_events([
+        get_events(ICS_BLOB),
+        get_events(ICS_BLOB2),
+    ].flatten).to_ical
 end
 
-def single_event(blob)
+def get_events(blob)
     cals = Icalendar::Calendar.parse(blob)
-    cals.first.events.first
+    cals.map {|cal| cal.events}.flatten
 end
 
 def merge_events(events)
