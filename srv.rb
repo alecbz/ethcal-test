@@ -13,7 +13,9 @@ get '/' do
 end
 
 get '/feed/:boop' do
-    merge_events(ICS_BLOBS.map {|blob| get_events(blob)}.flatten).to_ical
+    cal = merge_events(ICS_BLOBS.map {|blob| get_events(blob)}.flatten)
+    cal.publish # ??
+    cal.to_ical
 end
 
 def get_events(blob)
